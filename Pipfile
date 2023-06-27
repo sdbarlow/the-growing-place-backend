@@ -9,6 +9,13 @@ flask-sqlalchemy = "*"
 psycopg2 = "*"
 python-dotenv = "*"
 flask-cors = "*"
+flask-migrate = "*"
+sqlalchemy-serializer = "*"
+flask-restful = "*"
+flask-bcrypt = "*"
+sqlalchemy = "*"
+cryptography = "*"
+alembic = "*"
 
 [dev-packages]
 
