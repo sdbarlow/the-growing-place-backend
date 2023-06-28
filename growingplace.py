@@ -8,9 +8,10 @@ from models import db, Application, Reference, Employment
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1Cowbirds@localhost:5432/the-growing-place'
-db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1Cowbirds@localhost/the-growing-place'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 migrate = Migrate(app, db)
+db.init_app(app)
 CORS(app)
 
 

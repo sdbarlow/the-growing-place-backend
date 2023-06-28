@@ -7,7 +7,7 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1Cowbirds@localhost:5432/the-growing-place'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1Cowbirds@localhost/the-growing-place'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 key = Fernet.generate_key()
@@ -100,7 +100,7 @@ class Employment(db.Model):
     to_date = db.Column(db.Date, nullable=False)
     reason_for_leaving = db.Column(db.String(256), nullable=False)
     permission_to_contact = db.Column(db.Boolean, nullable=False)
-    application_id = db.Column(db.Integer, db.ForeignKey('application.id'), nullable=False)
+    application_id = db.Column(db.Integer, db.ForeignKey('applications.id'), nullable=False)
     application = db.relationship('Application', backref=db.backref('employments', lazy=True))
 
 class Reference(db.Model):
@@ -113,5 +113,5 @@ class Reference(db.Model):
     company = db.Column(db.String, nullable=False)
     phone = db.Column(db.String, nullable=False)
     address = db.Column(db.String, nullable=False)
-    application_id = db.Column(db.Integer, db.ForeignKey('application.id'), nullable=False)
+    application_id = db.Column(db.Integer, db.ForeignKey('applications.id'), nullable=False)
     application = db.relationship('Application', backref=db.backref('references', lazy=True))
